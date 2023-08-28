@@ -1,0 +1,7 @@
+logging:
+  level:
+    root: debug
+
+server:
+  port: 8082
+ot-value: true
