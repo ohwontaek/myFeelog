@@ -20,38 +20,40 @@ public class FeelogController {
 
     @RequestMapping({"/","/index"})
     public ModelAndView index(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("index.html");
+        ModelAndView mv = new ModelAndView("index.html");
         return mv;
     }
 
     @RequestMapping("/contact")
     public ModelAndView contactForm(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("contact.html");
+        ModelAndView mv = new ModelAndView("contact.html");
         return mv;
     }
 
     @RequestMapping("/bloghome")
     public ModelAndView blogHome(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("blog-home.html");
+        ModelAndView mv = new ModelAndView("blog-home.html");
         return mv;
     }
     @RequestMapping("/blogpost")
     public ModelAndView blogPost(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("blog-post.html");
+        ModelAndView mv = new ModelAndView("blog-post.html");
         return mv;
     }
 
     @RequestMapping("/signup")
     public ModelAndView signUp(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("signup.html");
+        ModelAndView mv = new ModelAndView("sign-up.html");
         return mv;
     }
 
+    @RequestMapping("/signupAction")
+    public ModelAndView singupAction(RegisterRequest dto){
+        System.out.println("dto.getEmail() == " + dto.getEmail());
+        regiserService.signup(dto);
+        ModelAndView mv = new ModelAndView("contact.html");
+        return mv;
+    }
 
 
 }

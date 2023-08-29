@@ -8,10 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegiserService {
 
+
     private final MemberRepository memberRepository;
 
     public RegiserService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
+    }
+
+    public void signup(RegisterRequest dto) {
+        Member member = new Member(dto);
+        memberRepository.save(member);
     }
 
 //    public Member register(RegisterRequest request) {
