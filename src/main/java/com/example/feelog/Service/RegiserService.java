@@ -17,6 +17,7 @@ public class RegiserService {
 
     public void signup(RegisterRequest dto) {
         Member member = new Member(dto);
+
         memberRepository.save(member);
     }
 

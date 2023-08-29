@@ -5,6 +5,7 @@ import com.example.feelog.DTO.RegisterRequest;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Service.RegiserService;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,7 +48,7 @@ public class FeelogController {
         return mv;
     }
 
-    @RequestMapping("/signupAction")
+    @PostMapping("/signupAction")
     public ModelAndView singupAction(RegisterRequest dto){
         System.out.println("dto.getEmail() == " + dto.getEmail());
         regiserService.signup(dto);

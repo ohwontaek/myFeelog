@@ -5,13 +5,14 @@ import com.example.feelog.DTO.RegisterRequest;
 import jakarta.persistence.*;
 import java.security.Timestamp;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
 @Getter
-public class Member {
+public class Member extends BaseTimeEntity{
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +33,6 @@ public class Member {
 
         @Column(name = "introduce")
         private String introduce;
-
-        @CreatedDate
-        @Column(name = "created_at", updatable = false)
-        private Timestamp createdAt;
-
-        @LastModifiedDate
-        @Column(name = "updated_at")
-        private Timestamp updatedAt;
 
 //        public Member(Long memberId, String name, String email, String password, String picture,
 //            String introduce, Timestamp createdAt, Timestamp updatedAt) {
