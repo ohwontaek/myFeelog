@@ -36,46 +36,33 @@
                                 <!-- To make this form functional, sign up at-->
                                 <!-- https://startbootstrap.com/solution/contact-forms-->
                                 <!-- to get an API token!-->
-                                <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="/signupAction" method="post">
+                                <form id="contactForm" action="/signupAction" method="post">
                                     <!-- Email address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="email_id" name="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                                        <input class="form-control" id="email_id" name="email" type="email" placeholder="name@example.com" required/>
                                         <label for="email_id">Email address</label>
-                                        <div class="invalid-feedback" data-sb-feedback="email_id:required">An email is required.</div>
-                                        <div class="invalid-feedback" data-sb-feedback="email_id:email">Email is not valid.</div>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="password_id" name="password" type="password" placeholder="" data-sb-validations="required" />
+                                        <input class="form-control" id="password_id" name="password" type="password" placeholder="" required />
                                         <label for="password_id">Password</label>
-                                        <div class="invalid-feedback" data-sb-feedback="password_id:required">An passward is required.</div>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name_id" name="name" type="text" placeholder="name" data-sb-validations="required" />
+                                        <input class="form-control" id="name_id" name="name" type="text" placeholder="name" required />
                                         <label for="name_id">Name</label>
-                                        <div class="invalid-feedback" data-sb-feedback="name_id:required">An name is required.</div>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" id="message" name="introduce" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                                        <textarea class="form-control" id="message" name="introduce" type="text" placeholder="Enter your message here..." style="height: 10rem" required></textarea>
                                         <label for="message">Message</label>
-                                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                                     </div>
                                     <!-- Submit success message-->
                                     <!---->
                                     <!-- This is what your users will see when the form-->
                                     <!-- has successfully submitted-->
-                                    <div class="d-none" id="submitSuccessMessage">
-                                        <div class="text-center mb-3">
-                                            <div class="fw-bolder">Form submission successful!</div>
-                                            To activate this form, sign up at
-                                            <br />
-                                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                        </div>
-                                    </div>
+
                                     <!-- Submit error message-->
                                     <!---->
                                     <!-- This is what your users will see when there is-->
                                     <!-- an error submitting the form-->
-                                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
                                     

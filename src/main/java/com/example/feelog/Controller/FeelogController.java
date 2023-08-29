@@ -39,7 +39,7 @@ public class FeelogController {
         return mv;
     }
 
-    @RequestMapping("/signup")
+/*    @RequestMapping("/signup")
     public ModelAndView signUp(){
         ModelAndView mv = new ModelAndView("sign-up.html");
         return mv;
@@ -51,7 +51,7 @@ public class FeelogController {
         registerService.signup(dto);
         ModelAndView mv = new ModelAndView("contact.html");
         return mv;
-    }
+    }*/
     @RequestMapping("/blogwrite")
     public ModelAndView blogWrite(){
         ModelAndView mv = new ModelAndView("write.html");
