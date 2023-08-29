@@ -1,9 +1,12 @@
 package com.example.feelog.Service;
 
+import com.example.feelog.DTO.LoginRequest;
 import com.example.feelog.DTO.RegisterRequest;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Repository.MemberRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class RegisterService {
@@ -18,6 +21,10 @@ public class RegisterService {
     public void signup(RegisterRequest dto) {
         Member member = new Member(dto);
         memberRepository.save(member);
+    }
+
+    public Optional<Member> login(LoginRequest dto) {
+        return memberRepository.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
     }
 
 //    public Member register(RegisterRequest request) {

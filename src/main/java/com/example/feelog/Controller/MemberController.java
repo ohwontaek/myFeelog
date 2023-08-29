@@ -3,10 +3,8 @@ package com.example.feelog.Controller;
 import com.example.feelog.DTO.LoginRequest;
 import com.example.feelog.DTO.RegisterRequest;
 import com.example.feelog.Entity.Member;
-import com.example.feelog.Service.MemberService;
 import com.example.feelog.Service.RegisterService;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,8 +36,15 @@ public class MemberController {
 
     @PostMapping("/loginAction") // 테스트 로그인 용
     public ModelAndView loginAction(LoginRequest dto, HttpSession session){
-        Optional<Member> member = MemberService.login(dto);
-        ModelAndView mv = new ModelAndView("index.html");
+        ModelAndView mv = new ModelAndView();
+        Optional<Member> member = registerService.login(dto);
+        if(member.isEmpty()){ // 로그인 실패시
+            mv.setViewName("contact.html");
+        }else{
+            session.setAttribute("login",member);
+            mv.setViewName("index.html");
+        }
+        System.out.println("login member = " + member);
         return mv;
     }
 
