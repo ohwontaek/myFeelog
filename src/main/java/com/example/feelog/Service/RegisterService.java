@@ -6,18 +6,17 @@ import com.example.feelog.Repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RegiserService {
+public class RegisterService {
 
 
     private final MemberRepository memberRepository;
 
-    public RegiserService(MemberRepository memberRepository) {
+    public RegisterService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
     public void signup(RegisterRequest dto) {
         Member member = new Member(dto);
-
         memberRepository.save(member);
     }
 
