@@ -25,7 +25,7 @@
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="/contact">로그인</a></li>
-                            
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
@@ -70,54 +70,28 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
                             <div class="text-center">
-                                <h2 class="fw-bolder">인기 블로그 TOP3</h2>
-                                <p class="lead fw-normal text-muted mb-5">현재 인기 블로그를 확인해 보세요</p>
+                                <h2 class="fw-bolder">최신 블로그 TOP3</h2>
+                                <p class="lead fw-normal text-muted mb-5">현재 최신 블로그를 확인해 보세요</p>
                             </div>
                         </div>
                     </div>
+                    <th:block th:each="blog, blogStat : ${blogList}">
                     <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
+                        <div class="card-body p-0" th:if="${blogStat.count <= 3}" th:remove="tag">
                             <div class="row gx-0">
                                 <div class="col-lg-3 col-xl-5 py-4">
                                     <div class="p-4 p-md-5">
-                                        <div class="h2 fw-bolder">Article heading goes here</div>
-                                        <p>Lorem ipsum doa officiis...</p>
+                                        <div class="h2 fw-bolder" th:text="${blog.getTitle()}"></div>
+                                        <p th:text="${blog.getIntroduce()}"></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"></div></div>
                             </div>
                         </div>
                     </div>
+                        </br>
+                    </th:block>
                     </br>
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
-                            <div class="row gx-0">
-                                <div class="col-lg-3 col-xl-5 py-4">
-                                    <div class="p-4 p-md-5">
-                                        <div class="h2 fw-bolder">Article heading goes here</div>
-                                        <p>Lorem ipsum doa officiis...</p>
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                    </br>
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0">
-                            <div class="row gx-0">
-                                <div class="col-lg-3 col-xl-5 py-4">
-                                    <div class="p-4 p-md-5">
-                                        <div class="h2 fw-bolder">Article heading goes here</div>
-                                        <p>Lorem ipsum doa officiis...</p>
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"></div></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
             <!-- Testimonial section-->

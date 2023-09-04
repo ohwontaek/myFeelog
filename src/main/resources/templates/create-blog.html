@@ -15,18 +15,18 @@
     <section class="py-5">
     <div class="container mt-5">
         <h2 class="mb-4">블로그 만들기</h2>
-        <form action="/createblogAction" method="post">
+        <form th:action="${session.login == null}? '/contact' : '/createblogAction'" method="post">
             <div class="form-group">
                 <label for="title_id">블로그 제목</label>
                 <input class="form-control" id="title_id" name="title" placeholder="제목을 입력하세요" required type="text">
             </div>
             <div class="form-group">
                 <label for="content_id">블로그 소개글</label>
-                <textarea class="form-control" id="content_id" name="content" placeholder="내용을 입력하세요" required rows="6"></textarea>
+                <textarea class="form-control" id="content_id" name="introduce" placeholder="내용을 입력하세요" required rows="6"></textarea>
             </div>
             <div class="form-group">
-                <label for="image">대표 이미지 업로드</label>
-                <input class="form-control-file" id="image" type="file">
+                <label for="image_id">대표 이미지 업로드</label>
+                <input class="form-control-file" id="image_id" name="image" type="file">
             </div>
             <button class="btn btn-primary" type="submit">블로그 생성</button>
         </form>

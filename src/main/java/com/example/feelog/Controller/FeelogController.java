@@ -1,8 +1,10 @@
 package com.example.feelog.Controller;
 
 import com.example.feelog.DTO.RegisterRequest;
+import com.example.feelog.Service.BlogService;
 import com.example.feelog.Service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +15,12 @@ public class FeelogController {
 
     @Autowired
     private RegisterService registerService;
-
+    @Autowired
+    private BlogService blogService;
 
     @RequestMapping({"/","/index"})
-    public ModelAndView index(){
+    public ModelAndView index(Model model){
+        model.addAttribute("blogList",blogService.getBlogList());
         ModelAndView mv = new ModelAndView("index.html");
         return mv;
     }

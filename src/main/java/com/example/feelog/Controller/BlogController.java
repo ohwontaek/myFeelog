@@ -1,7 +1,10 @@
 package com.example.feelog.Controller;
 
+import com.example.feelog.DTO.BlogRequest;
 import com.example.feelog.Entity.Blog;
+import com.example.feelog.Entity.Member;
 import com.example.feelog.Service.BlogService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,15 +25,13 @@ public class BlogController {
     }
 
     @PostMapping("/createblogAction")
-    public ModelAndView createBlogAction(){
-        Optional<Blog> blog = blogService.insertBlog();
-        ModelAndView mv = new ModelAndView("create-blog.html");
-        if(blog.isEmpty()){ // 로그인 실패시
-            mv.setViewName("contact.html");
-        }else{
-            mv.setViewName("index.html");
-        }
-
+    public ModelAndView createBlogAction(BlogRequest dto, HttpSession session){
+        System.out.println("inserted Blog title: " + dto.getTitle());
+        Member loginMember = (Member) session.getAttribute("login");
+        Blog blog = blogService.insertBlog(dto,loginMember);
+        System.out.println("blog : " + blog.getBlogId() + "," + blog.getTitle());
+        System.out.println("Member : " + loginMember);
+        ModelAndView mv = new ModelAndView("index.html");
         return mv;
     }
 

@@ -40,7 +40,7 @@ public class MemberController {
         if(member.isEmpty()){ // 로그인 실패시
             mv.setViewName("contact.html");
         }else{
-            session.setAttribute("login",member);
+            session.setAttribute("login",member.get());
             mv.setViewName("index.html");
         }
         System.out.println("login member = " + member);
