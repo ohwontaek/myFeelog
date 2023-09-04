@@ -3,10 +3,11 @@ package com.example.feelog.Entity;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import lombok.*;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 @Entity
 @Getter
-public class Board {
+public class Board extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
@@ -26,13 +27,12 @@ public class Board {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "image_url", columnDefinition = "MEDIUMBLOB")
+    private byte[] imageUrl;
 
-    @Column(name = "created_at", updatable = false, nullable = false)
-    private Timestamp createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    private Timestamp updatedAt;
-
+    public String generateImage() {
+        return Base64.encodeBase64String(this.imageUrl);
+    }
 }
