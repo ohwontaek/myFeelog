@@ -54,7 +54,7 @@
                                 <h1 class="display-5 fw-bolder text-white mb-2">지금 바로 자신만의 블로그를 시작하세요!</h1>
                                 <p class="lead fw-normal text-white-50 mb-4">빠르게 당신만의 블로그를 만들고 꾸며보세요, 트렌드에 맞춘 전문 블로그를 운영해서 전문성을 길러보세요</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/contact">시작하기</a>
+                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" th:href="${session.login == null} ? '/contact' : '/createblog'">시작하기</a>
                                 </div>
                             </div>
                         </div>

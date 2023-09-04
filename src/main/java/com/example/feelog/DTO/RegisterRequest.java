@@ -1,8 +1,9 @@
 package com.example.feelog.DTO;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+@Data
 @Getter
 public class RegisterRequest {
     private String email;

@@ -4,6 +4,7 @@ import com.example.feelog.DTO.LoginRequest;
 import com.example.feelog.DTO.RegisterRequest;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,8 +12,9 @@ import java.util.Optional;
 @Service
 public class RegisterService {
 
-
+    @Autowired
     private final MemberRepository memberRepository;
+
 
     public RegisterService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;

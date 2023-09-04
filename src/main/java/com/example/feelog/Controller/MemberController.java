@@ -5,6 +5,7 @@ import com.example.feelog.DTO.RegisterRequest;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Service.RegisterService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,11 +16,9 @@ import java.util.Optional;
 @RestController
 public class MemberController {
 
+    @Autowired
     private RegisterService registerService;
 
-    public MemberController(RegisterService registerService) {
-        this.registerService = registerService;
-    }
     @RequestMapping("/signup")
     public ModelAndView signUp(){
         ModelAndView mv = new ModelAndView("sign-up.html");

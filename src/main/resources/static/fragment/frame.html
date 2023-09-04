@@ -29,10 +29,11 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
 
-                            <li th:if="${session.login == null}"><a class="dropdown-item" href="/contact">블로그 생성하기</a></li>
-                            <th:block th:unless="${session.login == null}">
-                                <li calss="dropdown-item"><a class="dropdown-item" href="/blogpost">블로그 리스트</a></li>
-                            </th:block>
+                            <li><a class="dropdown-item" th:href="${session.login == null}? '/contact' : '/createblog'">블로그 생성하기</a></li>
+<!--                            <th:block th:unless="${session.login == null}">-->
+<!--                                <li calss="dropdown-item"><a class="dropdown-item" href="/blogpost">블로그 리스트</a></li>-->
+<!--                                <li calss="dropdown-item"><a class="dropdown-item" href="/createblog">블로그 생성하기</a></li>-->
+<!--                            </th:block>-->
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="/blogpost">포스팅예시</a></li>

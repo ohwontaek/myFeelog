@@ -2,6 +2,7 @@ package com.example.feelog.Controller;
 
 import com.example.feelog.DTO.RegisterRequest;
 import com.example.feelog.Service.RegisterService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,11 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class FeelogController {
 
+    @Autowired
     private RegisterService registerService;
 
-    public FeelogController(RegisterService registerService) {
-        this.registerService = registerService;
-    }
 
     @RequestMapping({"/","/index"})
     public ModelAndView index(){

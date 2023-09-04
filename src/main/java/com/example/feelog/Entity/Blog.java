@@ -24,6 +24,8 @@ public class Blog extends BaseTimeEntity{
     @Column(name = "introduce")
     private String introduce;
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "image_url")
     private String imageUrl;
 
