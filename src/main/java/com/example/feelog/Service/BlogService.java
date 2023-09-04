@@ -36,4 +36,9 @@ public class BlogService {
     public Long getBlogCount(){
         return blogRepository.count();
     }
+
+    public Blog getBlogById(Long blogId) {
+        return blogRepository.getReferenceById(blogId);
+    }
+
 }

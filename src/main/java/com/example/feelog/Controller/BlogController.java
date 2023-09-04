@@ -6,6 +6,7 @@ import com.example.feelog.Entity.Member;
 import com.example.feelog.Service.BlogService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +25,20 @@ public class BlogController {
         return mv;
     }
 
+    @RequestMapping("/blog/{blogId}")
+    public ModelAndView blog(@PathVariable Long blogId){
+
+
+        ModelAndView mv = new ModelAndView("blog-home.html");
+        mv.addObject("blog", blogService.getBlogById(blogId));
+
+        return mv;
+    }
+
     @PostMapping("/createblogAction")
     public ModelAndView createBlogAction(BlogRequest dto, HttpSession session){
-        System.out.println("inserted Blog title: " + dto.getTitle());
         Member loginMember = (Member) session.getAttribute("login");
         Blog blog = blogService.insertBlog(dto,loginMember);
-        System.out.println("blog : " + blog.getBlogId() + "," + blog.getTitle());
-        System.out.println("Member : " + loginMember);
         ModelAndView mv = new ModelAndView("index.html");
         return mv;
     }

@@ -81,13 +81,19 @@
                             <div class="row gx-0">
                                 <div class="col-lg-3 col-xl-5 py-4">
                                     <div class="p-4 p-md-5">
-                                        <div class="h2 fw-bolder" th:text="${blog.getTitle()}"></div>
+                                        <div class="h2 fw-bolder">
+                                            <a class="text-decoration-none link-dark stretched-link" th:href="@{/blog/{blogId}(blogId = ${blog.getBlogId()})}"  th:text="${blog.getTitle()}"></a>
+                                        </div>
                                         <p th:text="${blog.getIntroduce()}"></p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"></div></div>
+                                <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog">
+                                    <img th:src="'data:image/png;base64,' + ${blog.generateImage()}" alt="Image" width="700" height="350" />
+                                </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                         </br>
                     </th:block>

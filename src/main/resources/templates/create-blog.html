@@ -15,7 +15,7 @@
     <section class="py-5">
     <div class="container mt-5">
         <h2 class="mb-4">블로그 만들기</h2>
-        <form th:action="${session.login == null}? '/contact' : '/createblogAction'" method="post">
+        <form th:action="${session.login == null}? '/contact' : '/createblogAction'" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title_id">블로그 제목</label>
                 <input class="form-control" id="title_id" name="title" placeholder="제목을 입력하세요" required type="text">

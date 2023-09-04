@@ -20,8 +20,8 @@ public class FeelogController {
 
     @RequestMapping({"/","/index"})
     public ModelAndView index(Model model){
-        model.addAttribute("blogList",blogService.getBlogList());
         ModelAndView mv = new ModelAndView("index.html");
+        mv.addObject("blogList",blogService.getBlogList());
         return mv;
     }
 
