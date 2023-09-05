@@ -4,9 +4,11 @@ import com.example.feelog.DTO.PostRequest;
 import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Post;
 import com.example.feelog.Repository.BlogRepository;
+import com.example.feelog.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.feelog.Entity.Member;
@@ -26,6 +28,9 @@ public class PostService {
     private final PostRepository postRepository;
     @Autowired
     private final BlogRepository blogRepository;
+
+    @Autowired
+    private final MemberRepository memberRepository;
 
    /* public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;

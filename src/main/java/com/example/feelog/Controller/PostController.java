@@ -17,23 +17,24 @@ import java.util.Optional;
 @Slf4j
 public class PostController {
     private final PostService postService; // blogService -> postService
-/*    @GetMapping("/blogwrite")
+    @RequestMapping("/postwriteAction/{blogId}")
     public String createPost(Model model){
         model.addAttribute("post", new Post());
-        return "write";
-    }*/
+        return "write.html";
+    }
     @PostMapping("/postwriteAction/{blogId}") //blogwrite -> postwriteAction
     public String create(@ModelAttribute("post") PostRequest post,
                          @SessionAttribute(name = "login", required = false) Member member,
-                         @PathVariable Long blogId){
-        if(member == null){
+                         @PathVariable Long blogId)
+
+      {  if(member == null){
             log.info("member session is not valid");
-            return "index";
+            return "index.html";
 
         }
 
         postService.create(post,member,blogId);
-        return "redirect:/";
+        return "index.html";
 
     }
 }
