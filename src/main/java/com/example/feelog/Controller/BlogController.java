@@ -4,6 +4,7 @@ import com.example.feelog.DTO.BlogRequest;
 import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Service.BlogService;
+import com.example.feelog.Service.PostService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,8 @@ import java.util.Optional;
 public class BlogController {
     @Autowired
     private BlogService blogService;
-
+    @Autowired
+    private PostService postService;
     @RequestMapping("/createblog")
     public ModelAndView createBlog(){
         ModelAndView mv = new ModelAndView("create-blog.html");
@@ -31,7 +33,7 @@ public class BlogController {
 
         ModelAndView mv = new ModelAndView("blog-home.html");
         mv.addObject("blog", blogService.getBlogById(blogId));
-
+        mv.addObject("postList", postService.findALL());
         return mv;
     }
 
