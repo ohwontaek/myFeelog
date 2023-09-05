@@ -54,7 +54,22 @@ public class RegisterService {
         } else {
             throw new IllegalArgumentException("해당 회원을 찾을 수 없습니다.");
         }
+
+
+
     }
+    @Transactional
+    public void deleteMember(Long memberId) {
+        Optional<Member> optionalMember = memberRepository.findById(memberId);
+
+        if (optionalMember.isPresent()) {
+            Member member = optionalMember.get();
+            memberRepository.delete(member);
+        } else {
+            throw new IllegalArgumentException("해당 회원을 찾을 수 없습니다.");
+        }
+    }
+
 
 //    public Member register(RegisterRequest request) {
 //        if(memberRepository.existsByEmail(request.getEmail())) {

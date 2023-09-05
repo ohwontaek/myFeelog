@@ -76,4 +76,28 @@ public class MemberController {
         return new ModelAndView("redirect:/index");
     }
 
+    @GetMapping("/deleteMember/{memberId}")
+    public ModelAndView deleteMember(@PathVariable Long memberId, HttpSession session) {
+        Optional<Member> optionalMember = registerService.getById(memberId);
+System.out.println("memberId"+memberId);
+        if (optionalMember.isPresent()) {
+            // 해당 회원을 찾은 경우에 삭제 처리를 진행합니다.
+            registerService.deleteMember(memberId);
+
+            // 세션에서 로그인 정보를 제거합니다.
+            session.setAttribute("login",null);
+
+            // 회원 삭제 후 어떤 페이지로 리다이렉트할지 지정합니다.
+            return new ModelAndView("index.html"); // 홈 페이지로 리다이렉트 또는 다른 페이지로 설정 가능
+        } else {
+            // 해당 회원을 찾을 수 없는 경우에 대한 처리
+            // 에러 메시지를 포함한 ModelAndView를 반환합니다.
+            ModelAndView mv = new ModelAndView("updateForm");
+            mv.addObject("member", new Member()); // 빈 Member 객체를 생성하여 폼을 초기화
+            mv.addObject("errorMessage", "해당 회원을 찾을 수 없습니다."); // 에러 메시지를 추가
+            return mv;
+        }
+    }
+
+
 }
