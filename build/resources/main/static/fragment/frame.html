@@ -24,7 +24,7 @@
                     <li class="nav-item">Home</a></li>
 
                     <li class="nav-item" th:if="${session.login == null}"><a class="nav-link" href="/contact">로그인</a></li>
-                    <li class="nav-item" th:unless="${session.login == null}"><a class="nav-link" th:text="${session.login.getName()}"></a></li>
+                    <li class="nav-item" th:unless="${session.login == null}"><a class="nav-link" th:text="${session.login.getName()}" th:href="@{/memberUpdate/{memberId}(memberId=${session.login.getMemberId()})}"></a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
