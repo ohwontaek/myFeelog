@@ -18,8 +18,8 @@ public class Comment {
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "board_id", nullable = false)
-    private Board board;
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 
     @Column(name = "comment_text", nullable = false)
     private String commentText;

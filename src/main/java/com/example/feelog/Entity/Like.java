@@ -1,7 +1,6 @@
 package com.example.feelog.Entity;
 
 import jakarta.persistence.*;
-import java.sql.Timestamp;
 import lombok.*;
 
 
@@ -15,6 +14,6 @@ public class Like {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "board_id", nullable = false)
-    private Board board;
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 }

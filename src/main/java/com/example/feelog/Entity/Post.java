@@ -1,17 +1,20 @@
 package com.example.feelog.Entity;
 
+import com.example.feelog.DTO.PostRequest;
 import jakarta.persistence.*;
-import java.sql.Timestamp;
 import lombok.*;
 import org.apache.tomcat.util.codec.binary.Base64;
 
+import java.io.IOException;
+
 @Entity
 @Getter
-public class Board extends BaseTimeEntity{
+@Setter
+public class Post extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "board_id")
-    private Long boardId;
+    @Column(name = "post_id")
+    private Long postId;
 
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
@@ -31,6 +34,26 @@ public class Board extends BaseTimeEntity{
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "image_url", columnDefinition = "MEDIUMBLOB")
     private byte[] imageUrl;
+
+    public Post(PostRequest postDTO, Member member, Blog blog) {
+        super();
+        this.member = member;
+        this.blog = blog;
+        this.title = postDTO.getTitle();
+        this.description = postDTO.getDescription();
+        try{
+            if(!postDTO.getImage().isEmpty()) {
+                this.imageUrl = postDTO.getImage().getBytes();
+            }else{
+                System.out.println("empty image");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public Post(){
+
+    }
 
     public String generateImage() {
         return Base64.encodeBase64String(this.imageUrl);
