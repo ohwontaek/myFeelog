@@ -37,7 +37,7 @@ public class MemberController {
         ModelAndView mv = new ModelAndView();
         Optional<Member> member = registerService.login(dto);
         if(member.isEmpty()){ // 로그인 실패시
-            mv.setViewName("contact.html");
+            mv.setViewName("signInFail.html");
         }else{
             session.setAttribute("login",member.get());
             mv.setViewName("index.html");
