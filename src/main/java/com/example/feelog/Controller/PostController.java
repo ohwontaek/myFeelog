@@ -18,8 +18,9 @@ import java.util.Optional;
 public class PostController {
     private final PostService postService; // blogService -> postService
     @RequestMapping("/postwriteAction/{blogId}")
-    public String createPost(Model model){
+    public String createPost(@PathVariable Long blogId, Model model){
         model.addAttribute("post", new Post());
+        model.addAttribute("blogId",  blogId );
         return "write.html";
     }
     @PostMapping("/postwriteAction/{blogId}") //blogwrite -> postwriteAction

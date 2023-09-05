@@ -12,7 +12,8 @@
 <div class="container mt-5">
   <h2 class="mb-4">블로그 글쓰기</h2>
   <!-- 글 작성 폼 -->
-  <form th:action="@{/postwriteAction/{blogId}}" method="post" enctype="multipart/form-data">
+  <form th:action="@{/postwriteAction/1}" method="post" enctype="multipart/form-data">
+
     <div class="form-group">
       <label for="title">제목</label>
       <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요" name="title" required>
@@ -24,7 +25,7 @@
 
     <div class="form-group">
       <label for="image">이미지 업로드</label>
-      <input type="file" class="form-control-file" id="image" name="imageUrl">
+      <input type="file" class="form-control-file" id="image" name="image">
     </div>
     <button type="submit" class="btn btn-primary">글 작성</button>
   </form>

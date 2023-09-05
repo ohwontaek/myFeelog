@@ -10,4 +10,6 @@ public class PostRequest {
     private String title;
     private String description;
     private MultipartFile image;
+
+
 }
