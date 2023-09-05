@@ -5,6 +5,9 @@ package com.example.feelog.Entity;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Getter
 public class Comment {
@@ -14,10 +17,12 @@ public class Comment {
     private Long commentId;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 

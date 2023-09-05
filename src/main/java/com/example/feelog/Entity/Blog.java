@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import lombok.*;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
@@ -19,6 +21,7 @@ public class Blog extends BaseTimeEntity{
     private Long blogId;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 

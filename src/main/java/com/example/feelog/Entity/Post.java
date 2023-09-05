@@ -4,6 +4,8 @@ import com.example.feelog.DTO.PostRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.IOException;
 
@@ -17,10 +19,12 @@ public class Post extends BaseTimeEntity{
     private Long postId;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "blog_id", nullable = false)
     private Blog blog;
 
