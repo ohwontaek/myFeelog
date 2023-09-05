@@ -4,14 +4,18 @@ package com.example.feelog.Entity;
 import com.example.feelog.DTO.RegisterRequest;
 import jakarta.persistence.*;
 import java.security.Timestamp;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
 @Getter
+@Setter
 public class Member extends BaseTimeEntity{
 
         @Id
@@ -55,4 +59,5 @@ public class Member extends BaseTimeEntity{
 
         public Member() {
         }
+
 }
