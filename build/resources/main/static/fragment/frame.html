@@ -24,6 +24,7 @@
                     <li class="nav-item">Home</a></li>
 
                     <li class="nav-item" th:if="${session.login == null}"><a class="nav-link" href="/contact">로그인</a></li>
+                    <li class="nav-item" th:unless="${session.login == null}"><a class="nav-link" href="/logoutAction">로그아웃</a></li>
                     <li class="nav-item" th:unless="${session.login == null}"><a class="nav-link" th:text="${session.login.getName()}" th:href="@{/memberUpdate/{memberId}(memberId=${session.login.getMemberId()})}"></a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
@@ -31,7 +32,10 @@
 
                             <li th:if="${session.login == null}"><a class="dropdown-item" href="/contact">블로그 생성하기</a></li>
                             <th:block th:unless="${session.login == null}">
-                                <li calss="dropdown-item"><a class="dropdown-item" href="/blogpost">블로그 리스트</a></li>
+                                <li class="dropdown-item"><a class="dropdown-item" href="/blogpost">블로그 리스트</a></li>
+                                <li  class="dropdown-item" ><a class="dropdown-item" href="/logoutAction">로그아웃</a></li>
+                                <li class="dropdown-item" ><a class="dropdown-item" href="/postwriteAction//{blogId}">글 쓰기</a></li>
+
                             </th:block>
                         </ul>
                     </li>
@@ -48,7 +52,7 @@
         </div>
     </nav>
 </main>
-    <footer class="bg-dark py-4 mt-auto" th:fragment="footerFragment">
+<footer class="bg-dark py-4 mt-auto" th:fragment="footerFragment">
     <div class="container px-5">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
