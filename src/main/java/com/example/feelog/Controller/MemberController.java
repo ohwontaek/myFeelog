@@ -6,6 +6,7 @@ import com.example.feelog.Entity.Member;
 import com.example.feelog.Service.RegisterService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,7 +40,7 @@ public class MemberController {
             mv.setViewName("contact.html");
         }else{
             session.setAttribute("login",member.get());
-            mv.setViewName("index.html");
+            mv.setViewName("/index");
         }
         System.out.println("login member = " + member);
         return mv;
@@ -53,7 +54,7 @@ public class MemberController {
         session.invalidate();
 
         // 로그아웃 후 리다이렉트할 페이지 설정
-        mv.setViewName("index.html");
+        mv.setViewName("redirect:/index");
 
         return mv;
     }
@@ -98,9 +99,11 @@ public class MemberController {
 
             // 세션에서 로그인 정보를 제거합니다.
             session.setAttribute("login",null);
+            session.invalidate();
+            ModelAndView mv = new ModelAndView("redirect:/index");
 
             // 회원 삭제 후 어떤 페이지로 리다이렉트할지 지정합니다.
-            return new ModelAndView("index.html"); // 홈 페이지로 리다이렉트 또는 다른 페이지로 설정 가능
+            return mv; // 홈 페이지로 리다이렉트 또는 다른 페이지로 설정 가능
         } else {
             // 해당 회원을 찾을 수 없는 경우에 대한 처리
             // 에러 메시지를 포함한 ModelAndView를 반환합니다.

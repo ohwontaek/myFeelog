@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter
+@IdClass(LikeID.class)
 public class Like {
     @Id
     @ManyToOne

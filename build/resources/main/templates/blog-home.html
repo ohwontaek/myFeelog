@@ -17,34 +17,41 @@
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <div th:replace="~{../static/fragment/frame :: navFragment}"></div>
-            <th:block th:each="post : ${postList}"> <!-- Page Content-->
             <section class="py-5">
                 <div class="container px-5">
                     <h1 class="fw-bolder fs-5 mb-4" th:text="${blog.getTitle()}"></h1>
+                    <a class="btn btn-primary btn-lg px-4 me-sm-3" th:href="@{/postwriteAction/{blogId}(blogId=${blog.getBlogId()})}">글쓰기</a>
+            <th:block th:each="post : ${postList}"> <!-- Page Content-->
+
+
                     <div class="card border-0 shadow rounded-3 overflow-hidden">
                         <div class="card-body p-0">
                             <div class="row gx-0">
                                 <div class="col-lg-6 col-xl-5 py-lg-5">
                                     <div class="p-4 p-md-5">
-                                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                                         <div class="h2 fw-bolder" th:text="${post.getTitle()}"></div>
-                                        <p th:text="${post.getDescription()}">
-                                            <img th:src="@{${post.getImage()}}" class="img-fluid" alt="Post Image" />
-
+                                        <div>
+                                            <p th:text="${post.getDescription()}"></p>
                                             <a class="stretched-link text-decoration-none" th:href="@{/blogpost/${blogId}}">
-                                            Read more
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
+                                                Read more
+                                                <i class="bi bi-arrow-right"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <img th:src="'data:image/png;base64,' + ${post.generateImage()}"
+                                 alt="Image" class="card-img" width="200" height="200"/>
                         </div>
                     </div>
                     </br>
                     </br>
+
+
+            </th:block>
                 </div>
             </section>
-            </th:block></main>
+        </main>
         <!-- Footer-->
         <footer class="bg-dark py-4 mt-auto">
             <div class="container px-5">

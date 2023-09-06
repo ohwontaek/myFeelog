@@ -33,9 +33,9 @@ public class PostController {
             return "index.html";
 
         }
-
+        System.out.println("memberName : " + member.getName());
         postService.create(post,member,blogId);
-        return "index.html";
+        return "redirect:/blog/" + blogId;
 
     }
 }

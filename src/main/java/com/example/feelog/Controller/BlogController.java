@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Optional;
-
 @RestController
 public class BlogController {
     @Autowired
@@ -32,8 +30,9 @@ public class BlogController {
 
 
         ModelAndView mv = new ModelAndView("blog-home.html");
-        mv.addObject("blog", blogService.getBlogById(blogId));
-        mv.addObject("postList", postService.findALL());
+        Blog blog = blogService.getBlogById(blogId);
+        mv.addObject("blog", blog);
+        mv.addObject("postList", postService.findPostsByBlog(blog));
         return mv;
     }
 
@@ -41,7 +40,7 @@ public class BlogController {
     public ModelAndView createBlogAction(BlogRequest dto, HttpSession session){
         Member loginMember = (Member) session.getAttribute("login");
         Blog blog = blogService.insertBlog(dto,loginMember);
-        ModelAndView mv = new ModelAndView("index.html");
+        ModelAndView mv = new ModelAndView("/index");
         return mv;
     }
 

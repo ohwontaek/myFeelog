@@ -16,7 +16,6 @@ import com.example.feelog.Entity.Member;
 import com.example.feelog.Repository.PostRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -66,5 +65,9 @@ public class PostService {
     @Transactional
     public List<Post> findALL(){
         return postRepository.findAll();
+    }
+
+    public List<Post> findPostsByBlog(Blog blog) {
+        return postRepository.findAllByBlog(blog);
     }
 }
