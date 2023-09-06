@@ -45,4 +45,13 @@ public class BlogController {
         return mv;
     }
 
+    @RequestMapping("/blogpost/{blogId}")
+    public ModelAndView blogPost(@PathVariable Long blogId) {
+
+
+        ModelAndView mv = new ModelAndView("blog-post.html");
+        return mv;
+
+    }
+
 }
