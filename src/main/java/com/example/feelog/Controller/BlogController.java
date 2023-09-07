@@ -1,6 +1,7 @@
 package com.example.feelog.Controller;
 
 import com.example.feelog.DTO.BlogRequest;
+import com.example.feelog.DTO.CommentRequest;
 import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Entity.Post;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,10 +64,23 @@ public class BlogController {
         if(postOptional.isPresent()) {
             mv.addObject("post", postService.findByPostId(postId).get());
             mv.addObject("writer", postService.getWriterById(postId));
+
+
             mv.addObject("comments", commentService.getCommentsByPostId(postId));
         }else{
             mv.setStatus(HttpStatusCode.valueOf(404));
         }
+        return mv;
+
+    }
+
+    @PostMapping("/blogpost/commentAction")
+    public ModelAndView commentAction(CommentRequest commentRequest, HttpSession session){
+        System.out.println(commentRequest);
+        commentService.insertComment(commentRequest);
+
+        ModelAndView mv = new ModelAndView("redirect:/blogpost/" + commentRequest.getPost_id());
+
         return mv;
 
     }

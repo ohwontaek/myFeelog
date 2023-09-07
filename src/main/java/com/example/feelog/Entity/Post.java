@@ -20,7 +20,7 @@ public class Post extends BaseTimeEntity{
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", nullable = true)
     private Member member;
 
     @ManyToOne
