@@ -16,6 +16,7 @@ import com.example.feelog.Entity.Member;
 import com.example.feelog.Repository.PostRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -69,5 +70,9 @@ public class PostService {
 
     public List<Post> findPostsByBlog(Blog blog) {
         return postRepository.findAllByBlog(blog);
+    }
+
+    public Optional<Post> findByPostId(Long postId) {
+        return postRepository.findById(postId);
     }
 }

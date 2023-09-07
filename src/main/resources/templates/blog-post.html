@@ -38,7 +38,7 @@
                                     <!-- Post title (글의 제목을 표시합니다) -->
                                     <h1 class="fw-bolder mb-1" th:text="${post.title}">Welcome to Blog Post!</h1>
                                     <!-- Post meta content (작성일자를 표시합니다) -->
-                                    <div class="text-muted fst-italic mb-2" th:text="${#dates.format(post.createdAt, 'yyyy-MM-dd')}">January 1, 2023</div>
+                                    <div class="text-muted fst-italic mb-2" th:text="${#dates.format(post.getCreatedAt(), 'yyyy-MM-dd')}">January 1, 2023</div>
                                     <!-- Post categories (카테고리를 표시합니다, 여기서는 생략했습니다) -->
                                     <!--a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a-->

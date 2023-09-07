@@ -3,15 +3,20 @@ package com.example.feelog.Controller;
 import com.example.feelog.DTO.BlogRequest;
 import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Member;
+import com.example.feelog.Entity.Post;
 import com.example.feelog.Service.BlogService;
 import com.example.feelog.Service.PostService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @RestController
 public class BlogController {
@@ -44,13 +49,17 @@ public class BlogController {
         return mv;
     }
 
-    @RequestMapping("/blogpost/{blogId}")
-    public ModelAndView blogPost(@PathVariable Long blogId) {
+    @RequestMapping("/blogpost/{postId}")
+    public ModelAndView blogPost(@PathVariable Long postId, HttpStatus status) {
 
 
         ModelAndView mv = new ModelAndView("blog-post.html");
-
-        mv.addObject("post",postService.findPostsByBlog(blogService.getBlogById(blogId)));
+        Optional<Post> postOptional = postService.findByPostId(postId);
+        if(postOptional.isPresent()) {
+            mv.addObject("post", postService.findByPostId(postId).get());
+        }else{
+            mv.setStatus(HttpStatusCode.valueOf(404));
+        }
         return mv;
 
     }
