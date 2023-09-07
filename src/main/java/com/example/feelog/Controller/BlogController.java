@@ -51,7 +51,7 @@ public class BlogController {
     public ModelAndView createBlogAction(BlogRequest dto, HttpSession session){
         Member loginMember = (Member) session.getAttribute("login");
         Blog blog = blogService.insertBlog(dto,loginMember);
-        ModelAndView mv = new ModelAndView("/index");
+        ModelAndView mv = new ModelAndView("redirect:/index");
         return mv;
     }
 
@@ -83,6 +83,13 @@ public class BlogController {
 
         return mv;
 
+    }
+
+    @RequestMapping({"/blogList"})
+    public ModelAndView blogList(){
+        ModelAndView mv = new ModelAndView("blog-list.html");
+        mv.addObject("blogList",blogService.getBlogList());
+        return mv;
     }
 
 }
