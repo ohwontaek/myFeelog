@@ -10,7 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter
-public class Comment {
+public class Comment extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
@@ -28,7 +28,4 @@ public class Comment {
 
     @Column(name = "comment_text", nullable = false)
     private String commentText;
-
-    @Column(name = "comment_date", updatable = false, nullable = false)
-    private Timestamp commentDate;
 }

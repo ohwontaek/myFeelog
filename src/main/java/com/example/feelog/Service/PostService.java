@@ -75,4 +75,8 @@ public class PostService {
     public Optional<Post> findByPostId(Long postId) {
         return postRepository.findById(postId);
     }
+
+    public Member getWriterById(Long postId) {
+        return postRepository.findById(postId).get().getMember();
+    }
 }

@@ -40,7 +40,7 @@ public class MemberController {
             mv.setViewName("contact.html");
         }else{
             session.setAttribute("login",member.get());
-            mv.setViewName("/index");
+            mv.setViewName("redirect:/index");
         }
         System.out.println("login member = " + member);
         return mv;

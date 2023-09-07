@@ -4,6 +4,7 @@ import com.example.feelog.DTO.BlogRequest;
 import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Repository.BlogRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -11,15 +12,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class BlogService {
 
     @Autowired
     private final BlogRepository blogRepository;
 
-    public BlogService(BlogRepository blogRepository) {
-        this.blogRepository = blogRepository;
-    }
 
     public Blog insertBlog(BlogRequest dto, Member member) {
         Blog blog = new Blog(dto,member);

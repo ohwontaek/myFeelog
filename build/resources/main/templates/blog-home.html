@@ -40,8 +40,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <figure th:if="${post.imageUrl != null}">
                             <img th:src="'data:image/png;base64,' + ${post.generateImage()}"
-                                 alt="Image" class="card-img" width="200" height="200"/>
+                                 alt="Image" class="card-img" width="200" height="200"/></figure>
                         </div>
                     </div>
                     </br>

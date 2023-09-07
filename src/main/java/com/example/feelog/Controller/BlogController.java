@@ -5,6 +5,7 @@ import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Entity.Post;
 import com.example.feelog.Service.BlogService;
+import com.example.feelog.Service.CommentService;
 import com.example.feelog.Service.PostService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class BlogController {
     private BlogService blogService;
     @Autowired
     private PostService postService;
+    @Autowired
+    private CommentService commentService;
+
     @RequestMapping("/createblog")
     public ModelAndView createBlog(){
         ModelAndView mv = new ModelAndView("create-blog.html");
@@ -50,13 +54,15 @@ public class BlogController {
     }
 
     @RequestMapping("/blogpost/{postId}")
-    public ModelAndView blogPost(@PathVariable Long postId, HttpStatus status) {
+    public ModelAndView blogPost(@PathVariable Long postId) {
 
 
         ModelAndView mv = new ModelAndView("blog-post.html");
         Optional<Post> postOptional = postService.findByPostId(postId);
         if(postOptional.isPresent()) {
             mv.addObject("post", postService.findByPostId(postId).get());
+            mv.addObject("writer", postService.getWriterById(postId));
+            mv.addObject("comments", commentService.getCommentsByPostId(postId));
         }else{
             mv.setStatus(HttpStatusCode.valueOf(404));
         }

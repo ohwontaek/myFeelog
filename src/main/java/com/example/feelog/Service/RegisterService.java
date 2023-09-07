@@ -4,6 +4,7 @@ import com.example.feelog.DTO.LoginRequest;
 import com.example.feelog.DTO.RegisterRequest;
 import com.example.feelog.Entity.*;
 import com.example.feelog.Repository.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class RegisterService {
 
@@ -25,13 +27,13 @@ public class RegisterService {
     private final CommentRepository commentRepository;
     @Autowired
     private  final LikeRepository likeRepository;
-    public RegisterService(MemberRepository memberRepository, BlogRepository blogRepository, PostRepository postRepository, CommentRepository commentRepository, LikeRepository likeRepository) {
-        this.memberRepository = memberRepository;
-        this.blogRepository = blogRepository;
-        this.postRepository = postRepository;
-        this.commentRepository = commentRepository;
-        this.likeRepository = likeRepository;
-    }
+//    public RegisterService(MemberRepository memberRepository, BlogRepository blogRepository, PostRepository postRepository, CommentRepository commentRepository, LikeRepository likeRepository) {
+//        this.memberRepository = memberRepository;
+//        this.blogRepository = blogRepository;
+//        this.postRepository = postRepository;
+//        this.commentRepository = commentRepository;
+//        this.likeRepository = likeRepository;
+//    }
 
 
     public void signup(RegisterRequest dto) {
