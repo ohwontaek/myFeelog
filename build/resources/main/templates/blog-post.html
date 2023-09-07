@@ -38,7 +38,7 @@
                                     <!-- Post title (글의 제목을 표시합니다) -->
                                     <h1 class="fw-bolder mb-1" th:text="${post.title}">Welcome to Blog Post!</h1>
                                     <!-- Post meta content (작성일자를 표시합니다) -->
-                                    <div class="text-muted fst-italic mb-2"><p th:text="${#temporals.format(post.createdDate,'yyyy-MM-dd HH:mm')}"></p></div>
+                                    <div class="text-muted fst-italic mb-2"><p th:text="${#temporals.format(post.createdDate,'yyyy-MM-dd HH:mm')}+'에 작성됨'"></p></div>
                                     <!-- Post categories (카테고리를 표시합니다, 여기서는 생략했습니다) -->
                                     <!--a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a-->
@@ -51,6 +51,9 @@
                                 <section class="mb-5" th:utext="${post.description}">
                                     <!-- 글의 내용이 여기에 동적으로 표시됩니다. -->
                                 </section>
+                                <a type="button" class="btn btn-light mb-md-3">
+                                    <!--<p th:text="${like}"></p>-->
+                                </a>
                             </article>
                             <!-- Comments section-->
                             <section>

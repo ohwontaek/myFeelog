@@ -4,6 +4,7 @@ import com.example.feelog.DTO.PostRequest;
 import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Post;
 import com.example.feelog.Repository.BlogRepository;
+import com.example.feelog.Repository.LikeRepository;
 import com.example.feelog.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,8 @@ public class PostService {
 
     @Autowired
     private final MemberRepository memberRepository;
+    @Autowired
+    private final LikeRepository likeRepository;
 
    /* public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
@@ -78,5 +81,9 @@ public class PostService {
 
     public Member getWriterById(Long postId) {
         return postRepository.findById(postId).get().getMember();
+    }
+
+    public long getLikeByPostId(Long postId) {
+        return likeRepository.countByPost(postRepository.findById(postId).get());
     }
 }

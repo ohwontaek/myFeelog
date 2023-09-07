@@ -31,7 +31,11 @@ public class CommentService {
         for(Comment comment : comments){
             CommentResponse c = new CommentResponse();
             c.setCommentId(comment.getCommentId());
-            c.setMemberName(comment.getMember().getName());
+            try {
+                c.setMemberName(comment.getMember().getName());
+            } catch (NullPointerException e){
+                c.setMemberName("탈퇴한 유저");
+            }
             c.setCommentText(comment.getCommentText());
             commentRList.add(c);
         }

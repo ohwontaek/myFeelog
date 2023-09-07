@@ -62,11 +62,13 @@ public class BlogController {
         ModelAndView mv = new ModelAndView("blog-post.html");
         Optional<Post> postOptional = postService.findByPostId(postId);
         if(postOptional.isPresent()) {
-            mv.addObject("post", postService.findByPostId(postId).get());
+            Post post = postOptional.get();
+            mv.addObject("post", post);
             mv.addObject("writer", postService.getWriterById(postId));
 
 
             mv.addObject("comments", commentService.getCommentsByPostId(postId));
+//            mv.addObject("like", postService.getLikeByPostId(postId));
         }else{
             mv.setStatus(HttpStatusCode.valueOf(404));
         }
