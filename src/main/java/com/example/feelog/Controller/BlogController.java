@@ -49,6 +49,8 @@ public class BlogController {
 
 
         ModelAndView mv = new ModelAndView("blog-post.html");
+
+        mv.addObject(postService.findPostsByBlog(blogService.getBlogById(blogId)));
         return mv;
 
     }

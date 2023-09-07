@@ -32,7 +32,7 @@
                                         <div class="h2 fw-bolder" th:text="${post.getTitle()}"></div>
                                         <div>
                                             <p th:text="${post.getDescription()}"></p>
-                                            <a class="stretched-link text-decoration-none" th:href="@{/blogpost/${blogId}}">
+                                            <a class="stretched-link text-decoration-none" th:href="@{/blogpost/{blogId}(blogId = ${blog.getBlogId()})}">
                                                 Read more
                                                 <i class="bi bi-arrow-right"></i>
                                             </a>
