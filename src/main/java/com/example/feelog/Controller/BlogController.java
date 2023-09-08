@@ -10,14 +10,14 @@ import com.example.feelog.Service.CommentService;
 import com.example.feelog.Service.PostService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
@@ -87,10 +87,16 @@ public class BlogController {
 
     }
 
-    @RequestMapping({"/blogList"})
-    public ModelAndView blogList(){
+    public BlogController(BlogService blogService) {
+        this.blogService = blogService;
+    }
+
+    @GetMapping("/bloglist")
+    public ModelAndView blogList(@PageableDefault Pageable pageable) {
+        Page<Blog> blogList = blogService.getBlogList(pageable);
         ModelAndView mv = new ModelAndView("blog-list.html");
-        mv.addObject("blogList",blogService.getBlogList());
+        mv.addObject("blogList", blogList);
+
         return mv;
     }
 
