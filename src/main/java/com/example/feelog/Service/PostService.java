@@ -3,6 +3,7 @@ package com.example.feelog.Service;
 import com.example.feelog.DTO.PostRequest;
 import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Post;
+import com.example.feelog.Entity.PostLike;
 import com.example.feelog.Repository.BlogRepository;
 import com.example.feelog.Repository.LikeRepository;
 import com.example.feelog.Repository.MemberRepository;
@@ -83,7 +84,12 @@ public class PostService {
         return postRepository.findById(postId).get().getMember();
     }
 
-    public long getLikeByPostId(Long postId) {
+    public Long getLikeByPostId(Long postId) {
         return likeRepository.countByPost(postRepository.findById(postId).get());
+    }
+
+    public void addLike(Long postId, Long memberId) {
+        PostLike like = new PostLike(postRepository.findById(postId).get(),memberRepository.findById(memberId).get());
+        likeRepository.save(like);
     }
 }
