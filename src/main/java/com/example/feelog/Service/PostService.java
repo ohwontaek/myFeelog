@@ -90,6 +90,7 @@ public class PostService {
     }
 
     public void addLike(Long postId, Long memberId) {
+
         PostLike like = new PostLike(postRepository.findById(postId).get(),memberRepository.findById(memberId).get());
         likeRepository.save(like);
 
@@ -108,5 +109,11 @@ public class PostService {
 
         // 상위 limit 개의 포스트만 반환합니다.
         return allPosts.subList(0, Math.min(limit, allPosts.size()));
+    }
+
+    public Optional<PostLike> findByPostAndMember(Long postId, Long memberId){
+        Post post = postRepository.findById(postId).get();
+        Member member = memberRepository.findById(memberId).get();
+        return likeRepository.findByPostAndMember(post,member);
     }
 }

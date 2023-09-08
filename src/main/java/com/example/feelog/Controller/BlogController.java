@@ -5,6 +5,7 @@ import com.example.feelog.DTO.CommentRequest;
 import com.example.feelog.Entity.Blog;
 import com.example.feelog.Entity.Member;
 import com.example.feelog.Entity.Post;
+import com.example.feelog.Entity.PostLike;
 import com.example.feelog.Repository.LikeRepository;
 import com.example.feelog.Service.BlogService;
 import com.example.feelog.Service.CommentService;
@@ -57,10 +58,12 @@ public class BlogController {
     }
 
     @RequestMapping("/blogpost/{postId}")
-    public ModelAndView blogPost(@PathVariable Long postId) {
+    public ModelAndView blogPost(@PathVariable Long postId, HttpSession session) {
 
 
         ModelAndView mv = new ModelAndView("blog-post.html");
+
+
         Optional<Post> postOptional = postService.findByPostId(postId);
         if(postOptional.isPresent()) {
             Post post = postOptional.get();
@@ -90,8 +93,12 @@ public class BlogController {
     @GetMapping("/blogpost/likeAction/{post}/{member}")
     public ModelAndView likeAction(@PathVariable("member") Long memberId,
                                     @PathVariable("post") Long postId){
-        postService.addLike(postId,memberId);
         ModelAndView mv = new ModelAndView("redirect:/blogpost/" + postId);
+
+
+
+            postService.addLike(postId, memberId);
+
         return mv;
     }
 

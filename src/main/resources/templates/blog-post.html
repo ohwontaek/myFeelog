@@ -51,7 +51,8 @@
                                 <section class="mb-5" th:utext="${post.description}">
                                     <!-- 글의 내용이 여기에 동적으로 표시됩니다. -->
                                 </section>
-                                <a type="button" class="btn btn-light mb-md-3" th:href="@{/blogpost/likeAction/{post}/{member}(member=${session.login== null}?${null}:${session.login.memberId}, post=${post.postId})}">
+                                <a type="button" class="btn btn-light mb-md-3" th:data-value="${msg}" th:onclick="showMSG(this.getAttribute('data-value'))"
+                                   th:href="@{/blogpost/likeAction/{post}/{member}(member=${session.login== null}?${null}:${session.login.memberId}, post=${post.postId})}">
                                     추천 : <p th:text="${likes}"></p>
                                 </a>
                             </article>

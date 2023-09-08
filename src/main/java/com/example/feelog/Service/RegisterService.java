@@ -83,7 +83,7 @@ public class RegisterService {
 
         if (optionalMember.isPresent()) {
             Member member = optionalMember.get();
-
+            likeRepository.deleteAllByMember(member);
             for(Blog blog : blogRepository.findAllByMember(member)) { //멤버가 가진 블로그 모두 조회
                 for(Post post : postRepository.findAllByBlog(blog)){// blog에 작성된 글 모두 조회
                     commentRepository.deleteAllByPost(post); //글,좋아요 모두 삭제 후 게시글 삭제
@@ -92,6 +92,7 @@ public class RegisterService {
                 }
                 blogRepository.delete(blog); // 블로그 삭제
             }
+            postRepository.deleteAllByMember(member);
             memberRepository.delete(member); // 멤버 삭제
         } else {
             throw new IllegalArgumentException("해당 회원을 찾을 수 없습니다.");
