@@ -41,6 +41,8 @@ public class Post extends BaseTimeEntity{
     @Column(name = "image_url", columnDefinition = "MEDIUMBLOB")
     private byte[] imageUrl;
 
+    private int likes;
+
     @OneToMany(mappedBy = "post")
     private List<PostLike> likedMember = new ArrayList<>();
 

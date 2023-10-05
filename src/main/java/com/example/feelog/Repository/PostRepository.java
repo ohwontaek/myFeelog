@@ -11,4 +11,6 @@ import java.util.List;
 //@NoRepositoryBean
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findAllByBlog(Blog blog);
+
+    List<Post> findTop3ByOrderByLikesDesc(int limit);
 }

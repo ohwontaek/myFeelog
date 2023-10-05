@@ -10,6 +10,7 @@ import com.example.feelog.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityNotFoundException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,5 +92,21 @@ public class PostService {
     public void addLike(Long postId, Long memberId) {
         PostLike like = new PostLike(postRepository.findById(postId).get(),memberRepository.findById(memberId).get());
         likeRepository.save(like);
+
+    }
+
+    public List<Post> getPopularPosts(int limit) {
+        // 모든 포스트를 가져옵니다.
+        List<Post> allPosts = postRepository.findAll();
+
+        // 포스트를 좋아요 개수에 따라 정렬합니다.
+        allPosts.sort((post1, post2) -> {
+            long likes1 = likeRepository.countByPost(post1);
+            long likes2 = likeRepository.countByPost(post2);
+            return Long.compare(likes2, likes1); // 좋아요 개수 내림차순으로 정렬
+        });
+
+        // 상위 limit 개의 포스트만 반환합니다.
+        return allPosts.subList(0, Math.min(limit, allPosts.size()));
     }
 }

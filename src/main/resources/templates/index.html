@@ -64,42 +64,45 @@
             </header>
             <!-- Features section-->
             <!-- Page Content-->
+            <!-- "인기 포스팅" 섹션 -->
             <section class="py-5">
-                <div class="container px-5">
-                </br>
+                <div class="container px-5 my-5">
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
                             <div class="text-center">
-                                <h2 class="fw-bolder">최신 블로그 TOP3</h2>
-                                <p class="lead fw-normal text-muted mb-5">현재 최신 블로그를 확인해 보세요</p>
+                                <h2 class="fw-bolder">인기 포스팅</h2>
+                                <p class="lead fw-normal text-muted mb-5">현재 top3 포스팅을 확인해 보세요</p>
                             </div>
                         </div>
                     </div>
-                    <th:block th:each="blog, blogStat : ${blogList}">
-                    <div class="card border-0 shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-0" th:if="${blogStat.count <= 3}" th:remove="tag">
-                            <div class="row gx-0">
-                                <div class="col-lg-3 col-xl-5 py-4">
-                                    <div class="p-4 p-md-5">
-                                        <div class="h2 fw-bolder">
-                                            <a class="text-decoration-none link-dark stretched-link" th:href="@{/blog/{blogId}(blogId = ${blog.getBlogId()})}"  th:text="${blog.getTitle()}"></a>
+                    <div class="row gx-5">
+                        <!-- 상위 3개의 인기 포스트 가져오기 -->
+                        <th:block th:each="popularPost : ${popularPosts}">
+                            <div class="col-lg-4 mb-5">
+                                <div class="card h-100 shadow border-0">
+                                    <!-- 포스트 이미지 -->
+                                    <img class="card-img-top" th:src="'data:image/png;base64,' + ${popularPost.generateImage()}" alt="..." />
+                                    <div class="card-body p-4">
+                                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+                                        <!-- 포스트 제목 -->
+                                        <a class="text-decoration-none link-dark stretched-link" th:href="@{/blog/{blogId}(blogId = ${popularPost.getBlog().getBlogId()})}" th:text="${popularPost.getTitle()}"></a>
+                                        <!-- 포스트 내용 -->
+                                        <p th:text="${popularPost.getIntroduce()}"></p>
+                                    </div>
+                                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                        <div class="d-flex align-items-end justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <!-- 작성자 정보 등을 표시할 수 있습니다 -->
+                                            </div>
                                         </div>
-                                        <p th:text="${blog.getIntroduce()}"></p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog">
-                                    <img th:src="'data:image/png;base64,' + ${blog.generateImage()}" alt="Image" width="700" height="300" />
-                                </div>
-                                </div>
                             </div>
-                        </div>
-
+                        </th:block>
                     </div>
-                        </br>
-                    </th:block>
-                    </br>
                 </div>
             </section>
+
             <!-- Testimonial section-->
             <!-- <div class="py-5 bg-light">
                 <div class="container px-5 my-5">
