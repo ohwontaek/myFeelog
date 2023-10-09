@@ -1,0 +1,17 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  config:
+    import:
+  profiles:
+    group:
+      main:
+      local:
+        - data-local
+        - web-local
+      prod:
+      release:
+      performance:
+    default: local

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>블로그 글쓰기</title>
+  <!-- 부트스트랩 링크 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{../static/fragment/frame :: navFragment}"></div>
+<div class="container mt-5">
+  <h2 class="mb-4">블로그 글쓰기</h2>
+  <!-- 글 작성 폼 -->
+  <form th:action="@{/postwriteAction/{blogId}(blogId = ${blogId})}" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label for="title">제목</label>
+      <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="content">내용</label>
+      <textarea class="form-control" id="content" rows="6" placeholder="내용을 입력하세요" name="description" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="image">이미지 업로드</label>
+      <input type="file" class="form-control-file" id="image" name="image">
+    </div>
+    <button type="submit" class="btn btn-primary">글 작성</button>
+  </form>
+</div>
+<div th:replace="~{../static/fragment/frame :: footerFragment}"></div>
+<!-- 부트스트랩 스크립트 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

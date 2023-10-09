@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블로그 만들기</title>
+    <!-- 부트스트랩 링크 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4">블로그 만들기</h2>
+    <form>
+        <div class="form-group">
+            <label for="title">블로그 이름</label>
+            <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요" required>
+        </div>
+        <div class="form-group">
+            <label for="content">소개</label>
+            <textarea class="form-control" id="content" rows="6" placeholder="내용을 입력하세요" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="tags">태그</label>
+            <input type="text" class="form-control" id="tags" placeholder="태그를 입력하세요 (쉼표로 구분)">
+        </div>
+        <div class="form-group">
+            <label for="image">이미지 업로드</label>
+            <input type="file" class="form-control-file" id="image">
+        </div>
+        <button type="submit" class="btn btn-primary">블로그 생성</button>
+    </form>
+</div>
+
+<!-- 부트스트랩 스크립트 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
